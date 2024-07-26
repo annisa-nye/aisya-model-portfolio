@@ -5,7 +5,7 @@ const Header: React.FC = () => {
 	return (
 		<header className=''>
 			<div className='w-full flex justify-center'>
-				<nav className='w-full h-auto fixed p-3 bg-white'>
+				<nav className='w-full h-auto fixed top-0 p-3 bg-white'>
 					<ul className='flex justify-end text-red-600'>
 						<li className='mx-2'>
 							<Link to='/'>Home</Link>

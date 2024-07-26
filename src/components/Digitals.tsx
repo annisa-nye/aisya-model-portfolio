@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Digitals: React.FC = () => (
-	<section className='w-full p-10 border-slate-950 border-2'>
+interface Measurement {
+	label: string;
+	value: string;
+}
+
+const Digitals: React.FC = () => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const measurements: Measurement[] = [
+		{ label: 'Height', value: '170cm' },
+		{ label: 'Bust', value: '86cm' },
+		{ label: 'Waist', value: '61cm' },
+		{ label: 'Hips', value: '92cm' },
+		{ label: 'Clothing', value: '6/8 AU' },
+		{ label: 'Shoe', value: '39 EU' },
+		{ label: 'Hair: ', value: 'Brown' },
+		{ label: 'Eyes: ', value: 'Brown' },
+	];
+
+	const toggleDropdown = () => {
+		setIsOpen(!isOpen);
+	}
+
+	return (
+		<section className='w-full p-10 border-slate-950 border-2'>
 			<div className='flex flex-row justify-around'>
 				<div className='p-5'>
 					<h2 className='text-xl font-bold py-2'>Features</h2>
@@ -77,7 +100,8 @@ const Digitals: React.FC = () => (
 					/>
 				</div>
 			</div>
-	</section>
-);
+		</section>
+	);
+};
 
 export default Digitals;
