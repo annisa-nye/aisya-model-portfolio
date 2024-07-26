@@ -2,8 +2,7 @@ import React from 'react';
 
 const Digitals: React.FC = () => (
 	<section className='w-full p-10 border-slate-950 border-2'>
-		<div className='flex'>
-			<div>
+			<div className='flex flex-row justify-around'>
 				<div className='p-5'>
 					<h2 className='text-xl font-bold py-2'>Features</h2>
 					<ul>
@@ -44,24 +43,40 @@ const Digitals: React.FC = () => (
 					</ul>
 				</div>
 			</div>
-			<div className='w-full h-auto flex'>
-				<img
-					className='object-contain h-96 w-64'
-					src='src/assets/images/p0-digitals/p0-1.jpeg'
-					alt='digitals 1'
-				/>
-				<img
-					className='object-contain h-96 w-64'
-					src='src/assets/images/p0-digitals/p0-2.jpeg'
-					alt='digitals 1'
-				/>
-				<img
-					className='object-contain h-96 w-64'
-					src='src/assets/images/p0-digitals/p0-3.jpeg'
-					alt='digitals 1'
-				/>
+			<div className='p-5 md:p-10'>
+				<div className='columns-3 gap-5 [&>img:not(:first-child):mt-5'>
+					<img
+						className='object-contain'
+						src='src/assets/images/p0-digitals/p0-1.jpeg'
+						alt='digitals 1'
+					/>
+					<img
+						className='object-contain'
+						src='src/assets/images/p0-digitals/p0-2.jpeg'
+						alt='digitals 2'
+					/>
+					<img
+						className='object-contain'
+						src='src/assets/images/p0-digitals/p0-3.jpeg'
+						alt='digitals 3'
+					/>
+					<img
+						className='object-contain'
+						src='src/assets/images/p0-digitals/p0-4.jpeg'
+						alt='digitals 4'
+					/>
+					<img
+						className='object-contain'
+						src='src/assets/images/p0-digitals/p0-5.jpeg'
+						alt='digitals 5'
+					/>
+					<img
+						className='object-contain'
+						src='src/assets/images/p0-digitals/p0-6.jpeg'
+						alt='digitals 6'
+					/>
+				</div>
 			</div>
-		</div>
 	</section>
 );
 
