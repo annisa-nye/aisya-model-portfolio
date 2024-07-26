@@ -1,0 +1,13 @@
+{
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "aisyamodelportfolio",
+      "environmentVariableName": "aisyamodelportfolio"
+    },
+    {
+      "cloudFormationParameterName": "recipientEmail",
+      "environmentVariableName": "RECIPIENT_EMAIL"
+    }
+  ]
+}

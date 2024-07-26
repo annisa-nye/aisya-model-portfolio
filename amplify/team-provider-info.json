@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-aisyamodelportfolio-dev-415d7-authRole",
+      "UnauthRoleArn": "arn:aws:iam::533267443334:role/amplify-aisyamodelportfolio-dev-415d7-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::533267443334:role/amplify-aisyamodelportfolio-dev-415d7-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-aisyamodelportfolio-dev-415d7-deployment",
+      "UnauthRoleName": "amplify-aisyamodelportfolio-dev-415d7-unauthRole",
+      "StackName": "amplify-aisyamodelportfolio-dev-415d7",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:533267443334:stack/amplify-aisyamodelportfolio-dev-415d7/1b3ddc00-4968-11ef-8ef5-06f50a0ee4f1",
+      "AmplifyAppId": "d295z3iam5c00x",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-aisyamodelportfolio-dev-415d7-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "function": {
+        "aisyamodelportfolio": {
+          "aisyamodelportfolio": "AISYA_MODEL_PORTFOLIO",
+          "recipientEmail": "aisyawiley@hotmail.com",
+          "deploymentBucketName": "amplify-aisyamodelportfolio-dev-415d7-deployment",
+          "s3Key": "amplify-builds/aisyamodelportfolio-6c66632f4f6f502f7a4f-build.zip"
+        }
+      },
+      "auth": {
+        "aisyamodelportfolio": {}
+      },
+      "api": {
+        "api5f3fb5a6": {}
+      }
+    }
+  }
+}

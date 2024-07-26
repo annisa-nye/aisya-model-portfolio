@@ -1,0 +1,86 @@
+{
+  "api": {
+    "api5f3fb5a6": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "aisyamodelportfolio"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "aisyamodelportfolio": {
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "managed"
+    }
+  },
+  "function": {
+    "aisyamodelportfolio": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_aisyamodelportfolio_aisyamodelportfolio": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "aisyamodelportfolio"
+        }
+      ]
+    },
+    "AMPLIFY_function_aisyamodelportfolio_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "aisyamodelportfolio"
+        }
+      ]
+    },
+    "AMPLIFY_function_aisyamodelportfolio_recipientEmail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "aisyamodelportfolio"
+        }
+      ]
+    },
+    "AMPLIFY_function_aisyamodelportfolio_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "aisyamodelportfolio"
+        }
+      ]
+    }
+  }
+}
