@@ -6,7 +6,7 @@ const HeroSection: React.FC = () => (
 			<h1 className='text-7xl'>Aisya Wiley</h1>
 			<p className='text-2xl'>Model</p>
 		</div>
-		<div>
+		<div className='text-white'>
 			<p>Brief tagline about Aisya</p>
 			<p>I'm a model!</p>
 		</div>
