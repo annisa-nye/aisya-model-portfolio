@@ -1,102 +1,113 @@
 import React, { useState } from 'react';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 interface Measurement {
 	label: string;
 	value: string;
 }
 
-const Digitals: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(false);
+interface MeasurementCategory {
+	title: string;
+	items: Measurement[];
+}
 
-	const measurements: Measurement[] = [
-		{ label: 'Height', value: '170cm' },
-		{ label: 'Bust', value: '86cm' },
-		{ label: 'Waist', value: '61cm' },
-		{ label: 'Hips', value: '92cm' },
-		{ label: 'Clothing', value: '6/8 AU' },
-		{ label: 'Shoe', value: '39 EU' },
-		{ label: 'Hair: ', value: 'Brown' },
-		{ label: 'Eyes: ', value: 'Brown' },
+const Digitals: React.FC = () => {
+	const [openCategories, setOpenCategories] = useState<{
+		[key: string]: boolean;
+	}>({});
+
+	const measurementCategories: MeasurementCategory[] = [
+		{
+			title: 'Measurements',
+			items: [
+				{ label: 'Height', value: '170cm' },
+				{ label: 'Bust', value: '86cm' },
+				{ label: 'Waist', value: '61cm' },
+				{ label: 'Hips', value: '92cm' },
+			],
+		},
+		{
+			title: 'Features',
+			items: [
+				{ label: 'Hair', value: 'Brown' },
+				{ label: 'Eyes', value: 'Brown' },
+			],
+		},
+		{
+			title: 'Size',
+			items: [
+				{ label: 'Clothing', value: '6/8 AU' },
+				{ label: 'Shoe', value: '39 EU' },
+			],
+		},
 	];
 
-	const toggleDropdown = () => {
-		setIsOpen(!isOpen);
-	}
+	const toggleCategory = (title: string) => {
+		setOpenCategories((prev) => ({ ...prev, [title]: !prev[title] }));
+	};
 
 	return (
-		<section className='w-full p-10 border-slate-950 border-2'>
-			<div className='flex flex-row justify-around'>
-				<div className='p-5'>
-					<h2 className='text-xl font-bold py-2'>Features</h2>
-					<ul>
-						<li>
-							<strong>Hair: </strong>Brown
-						</li>
-						<li>
-							<strong>Eyes: </strong>Brown
-						</li>
-					</ul>
+		<section id='digitals' className='pt-header'>
+			<div className='flex flex-col md:flex-row gap-8 p-6'>
+				<div className='w-full md:w-1/4'>
+					{measurementCategories.map((category, categoryIndex) => (
+						<div key={categoryIndex} className='mb-4 last:mb-0'>
+							<button
+								onClick={() => toggleCategory(category.title)}
+								className='w-full bg-gray-200 hover:bg-gray-300 text-black font-semibold py-2 px-4 rounded shadow flex justify-between items-center'
+							>
+								{category.title}
+								{openCategories[category.title] ? (
+									<FaChevronUp />
+								) : (
+									<FaChevronDown />
+								)}
+							</button>
+							{openCategories[category.title] && (
+								<ul className='mt-2 bg-white shadow rounded p-4'>
+									{category.items.map((measurement, itemIndex) => (
+										<li key={itemIndex} className='mb-1 last:mb-0'>
+											<span className='font-semibold'>
+												{measurement.label}:
+											</span>
+											<span className='ml-2'>{measurement.value}</span>
+										</li>
+									))}
+								</ul>
+							)}
+						</div>
+					))}
 				</div>
-				<div className='p-5'>
-					<h2 className='text-xl font-bold py-2'>Measurements</h2>
-					<ul>
-						<li>
-							<strong>Height: </strong>170cm
-						</li>
-						<li>
-							<strong>Bust: </strong>86cm
-						</li>
-						<li>
-							<strong>Waist: </strong>61cm
-						</li>
-						<li>
-							<strong>Hips: </strong>92cm
-						</li>
-					</ul>
-				</div>
-				<div className='p-5'>
-					<h2 className='text-xl font-bold py-2'>Size</h2>
-					<ul>
-						<li>
-							<strong>Clothing: </strong>6/8 AU
-						</li>
-						<li>
-							<strong>Shoe: </strong>39 EU
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div className='p-5 md:p-10'>
-				<div className='columns-3 gap-5 [&>img:not(:first-child):mt-5'>
+				<div className='w-full md:w-3/4 grid grid-cols-3 gap-4'>
 					<img
-						className='object-contain'
 						src='src/assets/images/p0-digitals/p0-1.jpeg'
-						alt='digitals 1'
+						alt='Digital 1'
+						className='w-full h-auto object-cover rounded shadow'
 					/>
 					<img
-						className='object-contain'
-						src='src/assets/images/p0-digitals/p0-2.jpeg'
-						alt='digitals 2'
-					/>
-					<img
-						className='object-contain'
 						src='src/assets/images/p0-digitals/p0-3.jpeg'
-						alt='digitals 3'
+						alt='Digital 2'
+						className='w-full h-auto object-cover rounded shadow'
 					/>
 					<img
-						className='object-contain'
+						src='src/assets/images/p0-digitals/p0-2.jpeg'
+						alt='Digital 3'
+						className='w-full h-auto object-cover rounded shadow'
+					/>
+					<img
 						src='src/assets/images/p0-digitals/p0-4.jpeg'
-						alt='digitals 4'
+						alt='Digital 4'
+						className='w-full h-auto object-cover rounded shadow'
 					/>
 					<img
-						className='object-contain'
-						src='src/assets/images/p0-digitals/p0-5.jpeg'
-						alt='digitals 5'
-					/>
-					<img
-						className='object-contain'
 						src='src/assets/images/p0-digitals/p0-6.jpeg'
-						alt='digitals 6'
+						alt='Digital 5'
+						className='w-full h-auto object-cover rounded shadow'
+					/>
+					<img
+						src='src/assets/images/p0-digitals/p0-4.jpeg'
+						alt='Digital 6'
+						className='w-full h-auto object-cover rounded shadow'
 					/>
 				</div>
 			</div>

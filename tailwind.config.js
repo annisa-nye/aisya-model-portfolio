@@ -6,7 +6,10 @@ export default {
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
 				lora: ['Lora', 'serif'],
-			}
+			},
+			padding: {
+				'header': '5rem'
+			},
 		},
 	},
 	plugins: [],

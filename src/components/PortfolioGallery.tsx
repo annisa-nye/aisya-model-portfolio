@@ -1,10 +1,11 @@
 import React from 'react';
 
 const PortfolioGallery: React.FC = () => (
-	<section className='w-full p-10 border-red-500 border-2'>
-		<h2>Portfolio</h2>
+	<section id='portfolio' className='pt-header'>
 		<div className='gallery-grid'>
-			{/* Add your gallery items here */}</div>
+			<h2>Portfolio</h2>
+			{/* Add your gallery items here */}
+		</div>
 	</section>
 );
 
