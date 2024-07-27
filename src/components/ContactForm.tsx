@@ -22,7 +22,7 @@ const Contact: React.FC = () => {
 
 	return (
 		<section id="contact">
-			<div className='flex justify-between p-8 bg-gray-900 text-white'>
+			<div className='m-2 flex justify-between p-8 bg-gray-900 text-white'>
 				<div className='w-1/3'>
 					<h2 className='text-2xl font-bold mb-6'>Contact Info</h2>
 					<div className='mb-4 flex items-center'>

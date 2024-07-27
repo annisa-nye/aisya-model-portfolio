@@ -22,8 +22,8 @@ const Header: React.FC = () => {
 	return (
 		<header>
 			<div className='w-full flex justify-center'>
-				<nav className='w-full h-auto fixed top-0 p-3 bg-white z-50'>
-					<ul className='flex justify-end text-red-600'>
+				<nav className='w-full h-auto fixed top-0 p-3 z-50'>
+					<ul className='flex justify-end text-red-600 text-lg'>
 						<li
 							className={`mx-2 ${
 								activeSection === 'hero' ? 'font-semibold text-red-800' : ''
