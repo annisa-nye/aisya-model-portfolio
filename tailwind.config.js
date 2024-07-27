@@ -8,7 +8,7 @@ export default {
 				lora: ['Lora', 'serif'],
 			},
 			padding: {
-				'header': '1rem',
+				'header': '3rem',
 			},
 		},
 	},
