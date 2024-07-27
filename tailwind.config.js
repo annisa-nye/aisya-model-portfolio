@@ -8,8 +8,11 @@ export default {
 				lora: ['Lora', 'serif'],
 			},
 			padding: {
-				'header': '4rem',
+				header: '4rem',
 			},
+		},
+		screens: {
+			'xs': {'max': '699px'},
 		},
 	},
 	plugins: [],

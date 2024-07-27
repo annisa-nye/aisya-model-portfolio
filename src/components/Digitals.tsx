@@ -47,7 +47,7 @@ const Digitals: React.FC = () => {
 	};
 
 	return (
-		<section id='digitals' className='min-h-screen'>
+		<section id='digitals' className='min-h-screen font-inter'>
 			<h2 className='text-2xl font-bold p-4 sticky top-0'>Digitals</h2>
 			<div className='flex flex-col lg:flex-row lg:gap-4'>
 				<div className='lg:w-1/4'>
@@ -59,7 +59,7 @@ const Digitals: React.FC = () => {
 										onClick={() => toggleCategory(category.title)}
 										className='flex items-center justify-between cursor-pointer'
 									>
-										<h3 className='text-lg font-semibold'>{category.title}</h3>
+										<h3 className='text-lg font-medium'>{category.title}</h3>
 										{openCategories[category.title] ? (
 											<FaChevronUp className='text-gray-500' />
 										) : (
@@ -71,7 +71,7 @@ const Digitals: React.FC = () => {
 										<ul className='mt-2 space-y-1'>
 											{category.items.map((measurement, itemIndex) => (
 												<li key={itemIndex} className='text-sm'>
-													<span className='font-medium'>
+													<span className='font-semibold'>
 														{measurement.label}:
 													</span>
 													<span className='ml-1'>{measurement.value}</span>
