@@ -21,10 +21,12 @@ const Contact: React.FC = () => {
 	};
 
 	return (
-		<section id="contact">
+		<section id='contact'>
+			<div className='font-inter min-h-screen sticky top-0'>
+				<h2 className='text-2xl font-bold p-4'>Contact Info</h2>
+			</div>
 			<div className='flex justify-between p-8 bg-gray-900 text-white min-h-screen'>
 				<div className='w-1/3'>
-					<h2 className='text-2xl font-bold mb-6 sticky top-0'>Contact Info</h2>
 					<div className='mb-4 flex items-center'>
 						<FaMapMarkerAlt className='mr-2' />
 						<span>5B Streat, City 50987 New Town US</span>
