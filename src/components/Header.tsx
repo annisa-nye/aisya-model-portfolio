@@ -22,11 +22,11 @@ const Header: React.FC = () => {
 	return (
 		<header>
 			<div className='font-inter w-full flex justify-center'>
-				<nav className='w-full h-auto fixed top-0 pt-4 pr-1 z-50'>
-					<ul className='flex justify-end text-red-600 text-lg'>
+				<nav className='w-full h-auto fixed top-0 pt-4 pr-1 z-50 xs:pt-5'>
+					<ul className='flex justify-end text-red-500 text-lg xs:text-sm'>
 						<li
-							className={`mx-2 ${
-								activeSection === 'hero' ? 'font-semibold text-red-800' : ''
+							className={`mx-2 xs:mx-1 ${
+								activeSection === 'hero' ? 'font-semibold text-red-700' : ''
 							}`}
 						>
 							<Link
@@ -39,8 +39,10 @@ const Header: React.FC = () => {
 							</Link>
 						</li>
 						<li
-							className={`mx-2 ${
-								activeSection === 'portfolio' ? 'font-semibold text-red-800' : ''
+							className={`mx-2 xs:mx-1 ${
+								activeSection === 'portfolio'
+									? 'font-semibold text-red-700'
+									: ''
 							}`}
 						>
 							<Link
@@ -53,8 +55,8 @@ const Header: React.FC = () => {
 							</Link>
 						</li>
 						<li
-							className={`mx-2 ${
-								activeSection === 'digitals' ? 'font-semibold text-red-800' : ''
+							className={`mx-2 xs:mx-1 ${
+								activeSection === 'digitals' ? 'font-semibold text-red-700' : ''
 							}`}
 						>
 							<Link
@@ -67,8 +69,8 @@ const Header: React.FC = () => {
 							</Link>
 						</li>
 						<li
-							className={`mx-2 ${
-								activeSection === 'contact' ? 'font-semibold text-red-800' : ''
+							className={`mx-2 xs:mx-1 ${
+								activeSection === 'contact' ? 'font-semibold text-red-700' : ''
 							}`}
 						>
 							<Link

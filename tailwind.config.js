@@ -12,7 +12,7 @@ export default {
 			},
 		},
 		screens: {
-			'xs': {'max': '699px'},
+			xs: { max: '420px' },
 		},
 	},
 	plugins: [],
