@@ -47,10 +47,10 @@ const Digitals: React.FC = () => {
 	};
 
 	return (
-		<section id='digitals' className='pt-header min-h-screen'>
+		<section id='digitals' className='min-h-screen'>
+			<h2 className='text-2xl font-bold p-4 sticky top-0'>Digitals</h2>
 			<div className='flex flex-col lg:flex-row lg:gap-4'>
 				<div className='lg:w-1/4'>
-					<h2 className='text-2xl font-bold p-4'>Digitals</h2>
 					<div className='p-4'>
 						<div className='space-y-4'>
 							{measurementCategories.map((category, categoryIndex) => (
