@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
 	return (
 		<section id='contact'>
 			<div className='font-inter min-h-screen sticky top-0'>
-				<h2 className='text-2xl font-bold p-4'>Contact Info</h2>
+				<h2 className='text-2xl font-bold p-4'>Contact</h2>
 			</div>
 			<div className='flex justify-between p-8 bg-gray-900 text-white min-h-screen'>
 				<div className='w-1/3'>
