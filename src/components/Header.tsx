@@ -21,7 +21,7 @@ const Header: React.FC = () => {
 
 	return (
 		<header>
-			<div className='w-full flex justify-center'>
+			<div className='font-inter w-full flex justify-center'>
 				<nav className='w-full h-auto fixed top-0 p-3 z-50'>
 					<ul className='flex justify-end text-red-600 text-lg'>
 						<li

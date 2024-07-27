@@ -52,25 +52,26 @@ const Digitals: React.FC = () => {
 				<div className='lg:w-1/4'>
 					<h2 className='text-2xl font-bold p-4'>Digitals</h2>
 					<div className='p-4'>
-						<div className='grid grid-cols-1 gap-2'>
+						<div className='space-y-4'>
 							{measurementCategories.map((category, categoryIndex) => (
-								<div key={categoryIndex} className='mb-1 last:mb-0'>
-									<button
+								<div key={categoryIndex}>
+									<div
 										onClick={() => toggleCategory(category.title)}
-										className='w-full bg-gray-200 hover:bg-gray-300 text-black font-semibold py-1 px-2 rounded shadow flex justify-between items-center text-sm'
+										className='flex items-center justify-between cursor-pointer'
 									>
-										<span className='truncate'>{category.title}</span>
+										<h3 className='text-lg font-semibold'>{category.title}</h3>
 										{openCategories[category.title] ? (
-											<FaChevronUp className='flex-shrink-0 ml-1' />
+											<FaChevronUp className='text-gray-500' />
 										) : (
-											<FaChevronDown className='flex-shrink-0 ml-1' />
+											<FaChevronDown className='text-gray-500' />
 										)}
-									</button>
+									</div>
+									<div className='h-px bg-gray-300 my-2'></div>
 									{openCategories[category.title] && (
-										<ul className='mt-1 bg-white shadow rounded p-2 text-xs'>
+										<ul className='mt-2 space-y-1'>
 											{category.items.map((measurement, itemIndex) => (
-												<li key={itemIndex} className='mb-1 last:mb-0'>
-													<span className='font-semibold'>
+												<li key={itemIndex} className='text-sm'>
+													<span className='font-medium'>
 														{measurement.label}:
 													</span>
 													<span className='ml-1'>{measurement.value}</span>
