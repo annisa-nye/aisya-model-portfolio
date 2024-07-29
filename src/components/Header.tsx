@@ -22,7 +22,7 @@ const Header: React.FC = () => {
 	return (
 		<header>
 			<div className='font-inter w-full flex justify-center'>
-				<nav className='w-full h-auto fixed top-0 pt-4 pr-1 z-50 xs:pt-5'>
+				<nav className='w-full h-auto fixed top-0 pt-6 pr-1 z-50 xs:pt-5'>
 					<ul className='flex justify-end text-red-500 text-lg xs:text-sm'>
 						<li
 							className={`mx-2 xs:mx-1 ${

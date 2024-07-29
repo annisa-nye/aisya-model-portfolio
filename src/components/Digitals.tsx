@@ -57,8 +57,8 @@ const Digitals: React.FC = () => {
 			<h2 className='text-2xl font-bold p-4 sticky top-0 bg-white z-10'>
 				Digitals
 			</h2>
-			<div className='p-4 grid grid-cols-5 gap-4 md:grid-cols-4 md:grid-rows-3'>
-				<div className='col-span-2 row-span-2 md:col-span-3 md:row-span-3 relative'>
+			<div className='p-4 grid grid-cols-5 gap-4 xs:grid-cols-3 xs:grid-rows-3'>
+				<div className='col-span-2 row-span-2 xs:col-span-3 xs:row-span-3 relative pl-2'>
 					<img
 						src={`src/assets/images/p0-digitals/p0-${carouselImages[currentImage]}.jpeg`}
 						alt={`Digital ${currentImage + 1}`}
@@ -77,20 +77,20 @@ const Digitals: React.FC = () => {
 						<FaChevronRight />
 					</button>
 				</div>
-				<div className='col-span-3 grid grid-cols-3 gap-4 md:col-span-1 md:row-span-3 md:flex md:flex-col'>
+				<div className='col-span-3 grid grid-cols-3 gap-4 xs:col-span-3 xs:row-span-3'>
 					{measurementCategories.map((category, categoryIndex) => (
 						<div
 							key={categoryIndex}
-							className='flex flex-col justify-between h-full md:h-auto'
+							className='flex flex-col justify-between h-full'
 						>
 							<div>
 								<h3 className='text-lg font-semibold xs:text-sm'>
 									{category.title}
 								</h3>
 								<div className='h-px bg-gray-300 my-1'></div>
-								<ul className='space-y-1 py-2'>
+								<ul className='space-y-1 py-2 xs:text-sm'>
 									{category.items.map((measurement, itemIndex) => (
-										<li key={itemIndex} className='text-sm'>
+										<li key={itemIndex} className=''>
 											<span className='font-medium'>{measurement.label}:</span>
 											<span className='ml-1'>{measurement.value}</span>
 										</li>
