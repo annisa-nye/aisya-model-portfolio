@@ -6,7 +6,7 @@ import HeroSection from './components/HeroSection';
 import PortfolioGallery from './components/PortfolioGallery';
 import Digitals from './components/Digitals';
 import ContactForm from './components/ContactForm';
-
+import WorkExpTiles from './components/WorkExpTiles';
 function App() {
 	return (
 		<Router>
@@ -20,6 +20,8 @@ function App() {
 							element={
 								<>
 									<HeroSection />
+									<WorkExpTiles expIds={['wexp-1', 'wexp-2', 'wexp-3']} />
+									
 									<PortfolioGallery />
 									<Digitals />
 									<ContactForm />

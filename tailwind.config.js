@@ -10,9 +10,14 @@ export default {
 			padding: {
 				header: '4rem',
 			},
+
+			fontSize: {
+				'xxs': '0.625rem',
+			}
 		},
 		screens: {
-			xs: { max: '420px' },
+			xs: { max: '480px' },
+			sm: { max: '750px' },
 		},
 	},
 	plugins: [],
