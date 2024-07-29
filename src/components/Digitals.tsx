@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 
 interface Measurement {
 	label: string;
@@ -13,6 +13,7 @@ interface MeasurementCategory {
 
 const Digitals: React.FC = () => {
 	const [currentImage, setCurrentImage] = useState(0);
+	const [fullScreenImage, setFullScreenImage] = useState<number | null>(null);
 
 	const measurementCategories: MeasurementCategory[] = [
 		{
@@ -50,6 +51,14 @@ const Digitals: React.FC = () => {
 		setCurrentImage(
 			(prev) => (prev - 1 + carouselImages.length) % carouselImages.length
 		);
+	};
+
+	const openFullScreenImage = (index: number) => {
+		setFullScreenImage(index);
+	};
+
+	const closeFullScreenImage = () => {
+		setFullScreenImage(null);
 	};
 
 	return (
@@ -105,11 +114,27 @@ const Digitals: React.FC = () => {
 						<img
 							src={`src/assets/images/p0-digitals/p0-${index + 4}.jpeg`}
 							alt={`Digital ${index + 4}`}
-							className='w-full h-full object-cover'
+							className='w-full h-full object-cover cursor-pointer'
+							onClick={() => openFullScreenImage(index)}
 						/>
 					</div>
 				))}
 			</div>
+			{fullScreenImage !== null && (
+				<div className='fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50'>
+					<img
+						src={`src/assets/images/p0-digitals/p0-${fullScreenImage + 4}.jpeg`}
+						alt={`Full-screen Digital ${fullScreenImage + 4}`}
+						className='max-w-full max-h-full object-contain'
+					/>
+					<button
+						onClick={closeFullScreenImage}
+						className='absolute top-4 right-4 text-white text-2xl'
+					>
+						<FaTimes />
+					</button>
+				</div>
+			)}
 		</section>
 	);
 };
