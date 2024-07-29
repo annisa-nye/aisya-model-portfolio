@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroSection: React.FC = () => {
 	const smallScreenStyle = window.matchMedia('(max-width: 599px)').matches
-		? { backgroundPosition: '10% 0%' }
+		? { backgroundPosition: '20% 0%' }
 		: {};
 
 	return (
