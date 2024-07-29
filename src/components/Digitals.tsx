@@ -57,8 +57,8 @@ const Digitals: React.FC = () => {
 			<h2 className='text-2xl font-bold p-4 sticky top-0 bg-white z-10'>
 				Digitals
 			</h2>
-			<div className='p-4 grid grid-cols-5 gap-4'>
-				<div className='col-span-2 row-span-2 relative'>
+			<div className='p-4 grid grid-cols-5 gap-4 md:grid-cols-4 md:grid-rows-3'>
+				<div className='col-span-2 row-span-2 md:col-span-3 md:row-span-3 relative'>
 					<img
 						src={`src/assets/images/p0-digitals/p0-${carouselImages[currentImage]}.jpeg`}
 						alt={`Digital ${currentImage + 1}`}
@@ -77,11 +77,11 @@ const Digitals: React.FC = () => {
 						<FaChevronRight />
 					</button>
 				</div>
-				<div className='col-span-3 grid grid-cols-3 gap-4'>
+				<div className='col-span-3 grid grid-cols-3 gap-4 md:col-span-1 md:row-span-3 md:flex md:flex-col'>
 					{measurementCategories.map((category, categoryIndex) => (
 						<div
 							key={categoryIndex}
-							className='flex flex-col justify-between h-full'
+							className='flex flex-col justify-between h-full md:h-auto'
 						>
 							<div>
 								<h3 className='text-lg font-semibold xs:text-sm'>
@@ -97,20 +97,18 @@ const Digitals: React.FC = () => {
 									))}
 								</ul>
 							</div>
-							<div className='h-80'>
-								{' '}
-								{/* Adjusted height here */}
-								<img
-									src={`src/assets/images/p0-digitals/p0-${
-										categoryIndex + 4
-									}.jpeg`}
-									alt={`Digital ${categoryIndex + 4}`}
-									className='w-full h-full object-cover'
-								/>
-							</div>
 						</div>
 					))}
 				</div>
+				{[0, 1, 2].map((index) => (
+					<div className='md:col-span-4' key={index}>
+						<img
+							src={`src/assets/images/p0-digitals/p0-${index + 4}.jpeg`}
+							alt={`Digital ${index + 4}`}
+							className='w-full h-full object-cover'
+						/>
+					</div>
+				))}
 			</div>
 		</section>
 	);
