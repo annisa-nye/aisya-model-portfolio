@@ -1,76 +1,118 @@
 import React, { useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 
 interface PortfolioItem {
 	title: string;
 	folderName: string;
 }
 
-const PortfolioCard: React.FC<PortfolioItem> = ({ title, folderName }) => {
-	const [currentImage, setCurrentImage] = useState(0);
-	const images = Array.from(
-		{ length: 5 },
-		(_, i) => `/src/assets/images/${folderName}/${folderName}-${i + 1}.jpg`
-	);
+const portfolioItems: PortfolioItem[] = [
+	{ title: 'Red and Yellow', folderName: 'p1-red-yellow' },
+	{ title: 'Pink and Blue', folderName: 'p2-pink-blue' },
+	{ title: 'Black and White', folderName: 'p3-black-white' },
+	{ title: 'Pink and Cream', folderName: 'p4-pink-cream' },
+	{ title: 'Multicolour', folderName: 'p5-multicolour' },
+	{ title: 'Magazine', folderName: 'p6-magazine' },
+	{ title: 'Runway', folderName: 'p7-runway' },
+	{ title: 'Indonesian', folderName: 'p8-indonesian' },
+];
+
+const PortfolioGallery: React.FC = () => {
+	const [fullscreenImage, setFullscreenImage] = useState<{
+		folder: string;
+		index: number;
+	} | null>(null);
+
+	const openFullscreen = (folder: string, index: number) => {
+		setFullscreenImage({ folder, index });
+	};
+
+	const closeFullscreen = () => {
+		setFullscreenImage(null);
+	};
 
 	const nextImage = () => {
-		setCurrentImage((prev) => (prev + 1) % images.length);
+		if (fullscreenImage) {
+			setFullscreenImage((prev) => ({
+				...prev!,
+				index: (prev!.index + 1) % 6, // Assuming 6 images per folder
+			}));
+		}
 	};
 
 	const prevImage = () => {
-		setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+		if (fullscreenImage) {
+			setFullscreenImage((prev) => ({
+				...prev!,
+				index: (prev!.index - 1 + 6) % 6, // Assuming 6 images per folder
+			}));
+		}
 	};
 
 	return (
-		<div className='bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col'>
-			<h3 className='text-sm font-semibold p-2 text-center'>{title}</h3>
-			<div className='relative flex-grow'>
-				<img
-					src={images[currentImage]}
-					alt={title}
-					className='w-full h-full object-cover'
-				/>
-				<button
-					onClick={prevImage}
-					className='absolute left-1 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-1 rounded-full text-xs'
-				>
-					<FaChevronLeft />
-				</button>
-				<button
-					onClick={nextImage}
-					className='absolute right-1 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-1 rounded-full text-xs'
-				>
-					<FaChevronRight />
-				</button>
-			</div>
-		</div>
-	);
-};
-
-const PortfolioGallery: React.FC = () => {
-	const portfolioItems: PortfolioItem[] = [
-		{ title: 'Digitals', folderName: 'p1-digitals' },
-		{ title: 'Red and Yellow', folderName: 'p1-red-yellow' },
-		{ title: 'Pink and Blue', folderName: 'p2-pink-blue' },
-		{ title: 'Black and White', folderName: 'p3-black-white' },
-		{ title: 'Pink and Cream', folderName: 'p4-pink-cream' },
-		{ title: 'Multicolour', folderName: 'p5-multicolour' },
-		{ title: 'Magazine', folderName: 'p6-magazine' },
-		{ title: 'Runway', folderName: 'p7-runway' },
-	];
-
-	return (
-		<section id='portfolio' className='font-inter min-h-screen bg-gray-100'>
+		<section
+			id='portfolio'
+			className='font-inter min-h-screen w-full bg-gray-100'
+		>
 			<div className='sticky top-0 z-10'>
 				<h2 className='text-xl font-bold p-4 bg-white shadow-md'>Portfolio</h2>
 			</div>
-			<div className='container mx-auto p-4'>
-				<div className='grid grid-cols-4 grid-rows-2 gap-4 aspect-[2/1]'>
-					{portfolioItems.map((item, index) => (
-						<PortfolioCard key={index} {...item} />
-					))}
-				</div>
+			<div className='w-full'>
+				{portfolioItems.map((item, rowIndex) => (
+					<div key={rowIndex} className='mb-8'>
+						<h3 className='text-lg font-semibold p-2'>{item.title}</h3>
+						<div className='flex overflow-x-auto'>
+							{[1, 2, 3, 4, 5, 6].map((imgIndex) => (
+								<div
+									key={imgIndex}
+									className='flex-shrink-0 w-64 h-64 m-2 overflow-hidden transition-all duration-300 ease-in-out hover:scale-105'
+									onClick={() => openFullscreen(item.folderName, imgIndex - 1)}
+								>
+									<img
+										src={`src/assets/images/${item.folderName}/${
+											item.folderName.split('-')[0]
+										}-${imgIndex}.jpeg`}
+										alt={`${item.title} ${imgIndex}`}
+										className='w-full h-full object-cover cursor-pointer'
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+				))}
 			</div>
+
+			{fullscreenImage && (
+				<div className='fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50'>
+					<img
+						src={`src/assets/images/${fullscreenImage.folder}/${
+							fullscreenImage.folder.split('-')[0]
+						}-${fullscreenImage.index + 1}.jpeg`}
+						alt={`Fullscreen ${fullscreenImage.folder} ${
+							fullscreenImage.index + 1
+						}`}
+						className='max-w-full max-h-full object-contain'
+					/>
+					<button
+						onClick={closeFullscreen}
+						className='absolute top-4 right-4 text-white text-2xl'
+					>
+						<FaTimes />
+					</button>
+					<button
+						onClick={prevImage}
+						className='absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl'
+					>
+						<FaChevronLeft />
+					</button>
+					<button
+						onClick={nextImage}
+						className='absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl'
+					>
+						<FaChevronRight />
+					</button>
+				</div>
+			)}
 		</section>
 	);
 };

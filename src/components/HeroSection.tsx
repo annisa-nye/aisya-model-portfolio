@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
 	return (
 		<section
 			id='hero'
-			className="w-full h-screen px-3 border-slate-950 border-2 bg-[url('./assets/images/p1-red-yellow/p1-3.jpg')] bg-cover bg-fixed"
+			className="w-full h-screen px-3 border-slate-950 border-2 bg-[url('./assets/images/p1-red-yellow/p1-3.jpeg')] bg-cover bg-fixed"
 			style={smallScreenStyle}
 		>
 			<div className='pt-32 text-start text-red-500 sticky top-0 xs:pt-25'>

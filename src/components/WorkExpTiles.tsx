@@ -17,7 +17,7 @@ const WorkExpTiles: React.FC<WorkExpTilesProps> = ({ expIds }) => {
 						id={expId}
 						className={`
                                 work-exp-tile relative h-[25em] w-[20em] mx-2 inline-block
-                                bg-[url('./assets/images/p1-red-yellow/p1-4.jpg')] bg-center bg-no-repeat bg-cover bg-fixed
+                                bg-[url('./assets/images/p1-red-yellow/p1-2.jpeg')] bg-center bg-no-repeat bg-cover bg-fixed
                                 ${index === 0 ? 'mt-[-5em]' : ''}
                                 ${index === 1 ? 'mt-0' : ''}
                                 ${index === 2 ? 'mb-[-5em]' : ''}
