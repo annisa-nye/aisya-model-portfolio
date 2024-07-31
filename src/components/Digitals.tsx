@@ -93,7 +93,7 @@ const Digitals: React.FC = () => {
               className="flex h-full flex-col justify-between"
             >
               <div>
-                <h3 className="text-lg font-semibold sm:text-xs">
+                <h3 className="text-lg font-semibold sm:text-sm">
                   {category.title}
                 </h3>
                 <div className="my-1 h-px bg-gray-300"></div>
