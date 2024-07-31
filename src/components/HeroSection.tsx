@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const HeroSection: React.FC = () => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [subheaderRole, setSubheaderRole] = useState("model");
 
   useEffect(() => {
     const handleResize = () => setViewportWidth(window.innerWidth);
@@ -9,8 +10,25 @@ const HeroSection: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const roles = ["model", "artist", "cantik girl", "god", "client advisor"];
+
+    const changeRole = () => {
+      const randomRole = roles[Math.floor(Math.random() * roles.length)];
+      setSubheaderRole(randomRole);
+      const newTimeout = Math.floor(Math.random() * 500 + 1000);
+      setTimeout(changeRole, newTimeout);
+    };
+
+    changeRole();
+
+    // Cleanup function to clear any remaining timeouts
+    return () => clearTimeout(changeRole);
+  }, []);
+
   const isDesktop = viewportWidth > 830;
   const isWideDesktop = viewportWidth > 1700;
+  
 
   return (
     <section
@@ -31,24 +49,40 @@ const HeroSection: React.FC = () => {
           backgroundPosition: "10% 0%",
         }}
       ></div>
-      <h1
-        className={`absolute z-10 transform rounded-lg font-lora text-red-500 shadow-lg transition-all duration-300 ease-in-out hover:scale-105 ${
+      <div
+        className={`absolute z-10 ${
           isDesktop
             ? isWideDesktop
-              ? "left-8 top-8 px-10 py-3 text-xxl"
-              : "left-8 top-8 flex flex-col px-6 py-3 text-[10rem]"
-            : "bottom-8 left-4 right-4 text-white bg-red-600 px-4 py-4 text-center xs:text-[7rem] sm:text-[4rem]"
-        } `}
+              ? "left-8 top-8"
+              : "left-8 top-8"
+            : "bottom-8 left-4 right-4"
+        }`}
       >
-        {isWideDesktop ? (
-          "Aisya Wiley"
-        ) : (
-          <>
-            <span>Aisya </span>
-            <span>Wiley</span>
-          </>
-        )}
-      </h1>
+        <h1
+          className={`transform rounded-lg font-lora text-red-500 shadow-lg transition-all duration-300 ease-in-out hover:scale-105 ${
+            isDesktop
+              ? isWideDesktop
+                ? "px-10 py-3 text-xxl"
+                : "flex flex-col px-6 py-3 text-[10rem]"
+              : "bg-red-600 px-4 py-4 text-center text-white xs:text-[7rem] sm:text-[4rem]"
+          }`}
+        >
+          {isWideDesktop ? (
+            "Aisya Wiley"
+          ) : (
+            <>
+              <span>Aisya </span>
+              <span>Wiley</span>
+            </>
+          )}
+        </h1>
+        <div
+          id="landing-subheader"
+          className={`mt-2 p-2 text-2xl font-bold ${isDesktop ? "text-red-500" : "text-red-500 bg-white text-center rounded-lg"}`}
+        >
+          {subheaderRole}
+        </div>
+      </div>
     </section>
   );
 };

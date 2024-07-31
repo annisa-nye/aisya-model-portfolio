@@ -8,7 +8,7 @@ const WorkExpTiles: React.FC<WorkExpTilesProps> = ({ expIds }) => {
 	return (
     <div className="work-exp w-full">
       <h2 className="sticky top-0 z-10 bg-white p-6 text-xl font-bold sm:pb-2 sm:pl-2 sm:pt-4 sm:text-xl">
-        Digitals
+        
       </h2>
       <div className="work-exp-tiles relative mb-16 mt-16 flex w-full items-center justify-center">
         {expIds.map((expId, index) => (
