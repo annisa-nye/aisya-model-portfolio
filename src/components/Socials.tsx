@@ -4,7 +4,7 @@ import { InstagramEmbed, TikTokEmbed } from "react-social-media-embed";
 const Socials: React.FC = () => {
   return (
     <section id="socials" className="min-h-screen">
-      <h2 className="sticky top-0 z-10 bg-white p-4 text-xl font-bold sm:text-xl">
+      <h2 className="sticky top-0 z-10 bg-white p-6 text-xl font-bold sm:pb-3 sm:pl-2 sm:pt-4 sm:text-xl">
         Socials
       </h2>
       <div>

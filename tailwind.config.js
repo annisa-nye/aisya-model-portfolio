@@ -18,7 +18,7 @@ export default {
 		},
 		screens: {
 			xs: { max: '480px' },
-			sm: { max: '750px' },
+			sm: { max: '830px' },
 		},
 	},
 	plugins: [],

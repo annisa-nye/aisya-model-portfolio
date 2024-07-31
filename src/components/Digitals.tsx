@@ -63,7 +63,7 @@ const Digitals: React.FC = () => {
 
   return (
     <section id="digitals" className="min-h-screen">
-      <h2 className="sticky top-0 z-10 bg-white p-4 text-xl font-bold sm:text-xl">
+      <h2 className="sticky top-0 z-10 bg-white p-6 text-xl font-bold sm:pb-2 sm:pl-2 sm:pt-4 sm:text-xl">
         Digitals
       </h2>
       <div className="grid grid-cols-5 gap-4 p-4 xs:grid-cols-3 xs:grid-rows-3">
