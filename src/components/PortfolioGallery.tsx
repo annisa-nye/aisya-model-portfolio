@@ -75,9 +75,9 @@ const PortfolioGallery: React.FC = () => {
   };
 
   return (
-    <section id="portfolio" className="min-h-screen w-full font-inter">
+    <section id="portfolio" className="min-h-screen w-full font-inter section-padding">
       <h2 className="sticky top-0 z-10 bg-white p-6 text-xl font-bold sm:text-xl sm:pt-4 sm:pb-2 sm:pl-2">
-        Portfolio
+        
       </h2>
       <Masonry
         breakpointCols={{

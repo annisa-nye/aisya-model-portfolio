@@ -1,101 +1,88 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Events } from 'react-scroll';
+import React, { useState, useEffect } from "react";
+import { Link, Events } from "react-scroll";
 
 const Header: React.FC = () => {
-	const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("hero");
+  const [isHeroSection, setIsHeroSection] = useState(true);
 
-	useEffect(() => {
-		Events.scrollEvent.register('begin', function (to, element) {
-			setActiveSection(to);
-		});
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["hero", "portfolio", "digitals", "socials", "contact"];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 50 && rect.bottom > 50) {
+            setActiveSection(section);
+            setIsHeroSection(section === "hero");
+            break;
+          }
+        }
+      }
+    };
 
-		Events.scrollEvent.register('end', function (to, element) {
-			setActiveSection(to);
-		});
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-		return () => {
-			Events.scrollEvent.remove('begin');
-			Events.scrollEvent.remove('end');
-		};
-	}, []);
+  useEffect(() => {
+    Events.scrollEvent.register("begin", (to) => {
+      setActiveSection(to);
+      setIsHeroSection(to === "hero");
+    });
 
-	return (
-    <header>
-      <div className="flex w-full justify-center font-inter">
-        <nav className="fixed top-0 z-50 h-auto w-full pr-1 pt-6 xs:pt-5">
-          <ul className="flex justify-end text-lg text-red-500 xs:text-sm">
-            <li
-              className={`mx-2 xs:mx-1 ${
-                activeSection === "hero" ? "font-semibold text-red-700" : ""
-              }`}
-            >
-              <Link
-                to="hero"
-                smooth={true}
-                duration={500}
-                className="cursor-pointer hover:text-red-800"
+    Events.scrollEvent.register("end", (to) => {
+      setActiveSection(to);
+      setIsHeroSection(to === "hero");
+    });
+
+    return () => {
+      Events.scrollEvent.remove("begin");
+      Events.scrollEvent.remove("end");
+    };
+  }, []);
+
+  const sectionTitles = {
+    hero: "Home",
+    portfolio: "Portfolio",
+    digitals: "Digitals",
+    socials: "Socials",
+    contact: "Contact",
+  };
+
+  return (
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        isHeroSection ? "bg-transparent" : "bg-white"
+      }`}
+    >
+      <div className="flex items-center justify-between px-6 py-4 font-inter">
+        {!isHeroSection && (
+          <h2 className="text-xl font-bold text-red-500">
+            {sectionTitles[activeSection as keyof typeof sectionTitles]}
+          </h2>
+        )}
+        <nav className={isHeroSection ? "w-full" : ""}>
+          <ul
+            className={`flex text-lg xs:text-sm ${isHeroSection ? "justify-end" : ""}`}
+          >
+            {Object.entries(sectionTitles).map(([key, value]) => (
+              <li
+                key={key}
+                className={`mx-2 xs:mx-1 ${
+                  activeSection === key ? "font-semibold" : ""
+                }`}
               >
-                Home
-              </Link>
-            </li>
-            <li
-              className={`mx-2 xs:mx-1 ${
-                activeSection === "portfolio"
-                  ? "font-semibold text-red-700"
-                  : ""
-              }`}
-            >
-              <Link
-                to="portfolio"
-                smooth={true}
-                duration={500}
-                className="cursor-pointer hover:text-red-800"
-              >
-                Portfolio
-              </Link>
-            </li>
-            <li
-              className={`mx-2 xs:mx-1 ${
-                activeSection === "digitals" ? "font-semibold text-red-700" : ""
-              }`}
-            >
-              <Link
-                to="digitals"
-                smooth={true}
-                duration={500}
-                className="cursor-pointer hover:text-red-800"
-              >
-                Digitals
-              </Link>
-            </li>
-            <li
-              className={`mx-2 xs:mx-1 ${
-                activeSection === "socials" ? "font-semibold text-red-700" : ""
-              }`}
-            >
-              <Link
-                to="socials"
-                smooth={true}
-                duration={500}
-                className="cursor-pointer hover:text-red-800"
-              >
-                Socials
-              </Link>
-            </li>
-            <li
-              className={`mx-2 xs:mx-1 ${
-                activeSection === "contact" ? "font-semibold text-red-700" : ""
-              }`}
-            >
-              <Link
-                to="contact"
-                smooth={true}
-                duration={500}
-                className="cursor-pointer hover:text-red-800"
-              >
-                Contact
-              </Link>
-            </li>
+                <Link
+                  to={key}
+                  smooth={true}
+                  duration={500}
+                  className="cursor-pointer text-red-500 hover:text-red-800"
+                >
+                  {value}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
