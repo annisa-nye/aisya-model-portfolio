@@ -7,6 +7,9 @@ import PortfolioGallery from './components/PortfolioGallery';
 import Digitals from './components/Digitals';
 import ContactForm from './components/ContactForm';
 import WorkExpTiles from './components/WorkExpTiles';
+import Socials from './components/Socials';
+
+
 function App() {
 	return (
 		<Router>
@@ -24,6 +27,7 @@ function App() {
 									
 									<PortfolioGallery />
 									<Digitals />
+									<Socials />
 									<ContactForm />
 								</>
 							}

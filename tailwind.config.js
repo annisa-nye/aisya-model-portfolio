@@ -13,7 +13,8 @@ export default {
 
 			fontSize: {
 				'xxs': '0.625rem',
-			}
+				'xxl': '10rem',
+			},
 		},
 		screens: {
 			xs: { max: '480px' },

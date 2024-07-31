@@ -1,21 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HeroSection: React.FC = () => {
-	const smallScreenStyle = window.matchMedia('(max-width: 500px)').matches
-		? { backgroundPosition: '20% 0%' }
-		: {};
+	const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+	useEffect(() => {
+		const handleResize = () => setViewportWidth(window.innerWidth);
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
+	const isDesktop = viewportWidth > 1024;
 
 	return (
 		<section
 			id='hero'
-			className="w-full h-screen px-3 border-slate-950 border-2 bg-[url('./assets/images/p1-red-yellow/p1-3.jpeg')] bg-cover bg-fixed"
-			style={smallScreenStyle}
+			className={`w-full h-screen relative ${isDesktop ? 'flex' : ''}`}
 		>
-			<div className='pt-32 text-start text-red-500 sticky top-0 xs:pt-25'>
-				<h1 className='font-lora text-7xl py-4 inline-block xs:text-6xl'>Aisya Wiley</h1>
-				<p className='text-2xl pb-4 font-inter'>Model</p>
-			</div>
-			<div className='text-white'></div>
+			{isDesktop && (
+				<div
+					className='w-1/4 absolute left-0 top-0 bottom-0'
+					style={{ backgroundColor: 'rgb(5, 14, 10)' }}
+				></div>
+			)}
+			<div
+				className={`
+          ${isDesktop ? 'w-3/4 ml-auto' : 'w-full'}
+          h-full bg-[url('./assets/images/p1-red-yellow/p1-3.jpeg')] bg-cover relative
+        `}
+				style={{
+					backgroundPosition: '10% 0%',
+				}}
+			></div>
+			<h1 className='font-lora text-xxl text-white absolute top-4 left-4 z-10'>
+				Aisya
+				<br />
+				Wiley
+			</h1>
 		</section>
 	);
 };

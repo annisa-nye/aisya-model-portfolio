@@ -50,71 +50,70 @@ const PortfolioGallery: React.FC = () => {
 	};
 
 	return (
-		<section
-			id='portfolio'
-			className='font-inter min-h-screen w-full bg-gray-100'
-		>
-			<div className='sticky top-0 z-10'>
-				<h2 className='text-xl font-bold p-4 bg-white shadow-md'>Portfolio</h2>
-			</div>
-			<div className='w-full'>
-				{portfolioItems.map((item, rowIndex) => (
-					<div key={rowIndex} className='mb-8'>
-						<h3 className='text-lg font-semibold p-2'>{item.title}</h3>
-						<div className='flex overflow-x-auto'>
-							{[1, 2, 3, 4, 5, 6].map((imgIndex) => (
-								<div
-									key={imgIndex}
-									className='flex-shrink-0 w-64 h-64 m-2 overflow-hidden transition-all duration-300 ease-in-out hover:scale-105'
-									onClick={() => openFullscreen(item.folderName, imgIndex - 1)}
-								>
-									<img
-										src={`src/assets/images/${item.folderName}/${
-											item.folderName.split('-')[0]
-										}-${imgIndex}.jpeg`}
-										alt={`${item.title} ${imgIndex}`}
-										className='w-full h-full object-cover cursor-pointer'
-									/>
-								</div>
-							))}
-						</div>
-					</div>
-				))}
-			</div>
+    <section id="portfolio" className="min-h-screen w-full font-inter">
+      <div className="sticky top-0 z-10 bg-white">
+        <h2 className="p-4 text-xl font-bold sm:text-xl">
+          Portfolio
+        </h2>
+      </div>
+      <div className="w-full">
+        {portfolioItems.map((item, rowIndex) => (
+          <div key={rowIndex} className="mb-8">
+            <h3 className="p-2 text-lg font-semibold">{item.title}</h3>
+            <div className="flex overflow-x-auto">
+              {[1, 2, 3, 4, 5, 6].map((imgIndex) => (
+                <div
+                  key={imgIndex}
+                  className="m-2 h-64 w-64 flex-shrink-0 overflow-hidden transition-all duration-300 ease-in-out hover:scale-105"
+                  onClick={() => openFullscreen(item.folderName, imgIndex - 1)}
+                >
+                  <img
+                    src={`src/assets/images/${item.folderName}/${
+                      item.folderName.split("-")[0]
+                    }-${imgIndex}.jpeg`}
+                    alt={`${item.title} ${imgIndex}`}
+                    className="h-full w-full cursor-pointer object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
 
-			{fullscreenImage && (
-				<div className='fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50'>
-					<img
-						src={`src/assets/images/${fullscreenImage.folder}/${
-							fullscreenImage.folder.split('-')[0]
-						}-${fullscreenImage.index + 1}.jpeg`}
-						alt={`Fullscreen ${fullscreenImage.folder} ${
-							fullscreenImage.index + 1
-						}`}
-						className='max-w-full max-h-full object-contain'
-					/>
-					<button
-						onClick={closeFullscreen}
-						className='absolute top-4 right-4 text-white text-2xl'
-					>
-						<FaTimes />
-					</button>
-					<button
-						onClick={prevImage}
-						className='absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl'
-					>
-						<FaChevronLeft />
-					</button>
-					<button
-						onClick={nextImage}
-						className='absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl'
-					>
-						<FaChevronRight />
-					</button>
-				</div>
-			)}
-		</section>
-	);
+      {fullscreenImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
+          <img
+            src={`src/assets/images/${fullscreenImage.folder}/${
+              fullscreenImage.folder.split("-")[0]
+            }-${fullscreenImage.index + 1}.jpeg`}
+            alt={`Fullscreen ${fullscreenImage.folder} ${
+              fullscreenImage.index + 1
+            }`}
+            className="max-h-full max-w-full object-contain"
+          />
+          <button
+            onClick={closeFullscreen}
+            className="absolute right-4 top-4 text-2xl text-white"
+          >
+            <FaTimes />
+          </button>
+          <button
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 transform text-2xl text-white"
+          >
+            <FaChevronLeft />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 transform text-2xl text-white"
+          >
+            <FaChevronRight />
+          </button>
+        </div>
+      )}
+    </section>
+  );
 };
 
 export default PortfolioGallery;

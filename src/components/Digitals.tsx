@@ -1,142 +1,144 @@
-import React, { useState } from 'react';
-import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 interface Measurement {
-	label: string;
-	value: string;
+  label: string;
+  value: string;
 }
 
 interface MeasurementCategory {
-	title: string;
-	items: Measurement[];
+  title: string;
+  items: Measurement[];
 }
 
 const Digitals: React.FC = () => {
-	const [currentImage, setCurrentImage] = useState(0);
-	const [fullScreenImage, setFullScreenImage] = useState<number | null>(null);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [fullScreenImage, setFullScreenImage] = useState<number | null>(null);
 
-	const measurementCategories: MeasurementCategory[] = [
-		{
-			title: 'Measurements',
-			items: [
-				{ label: 'Height', value: '170cm' },
-				{ label: 'Bust', value: '86cm' },
-				{ label: 'Waist', value: '61cm' },
-				{ label: 'Hips', value: '92cm' },
-			],
-		},
-		{
-			title: 'Features',
-			items: [
-				{ label: 'Hair', value: 'Brown' },
-				{ label: 'Eyes', value: 'Brown' },
-			],
-		},
-		{
-			title: 'Size',
-			items: [
-				{ label: 'Clothing', value: '6/8 AU' },
-				{ label: 'Shoe', value: '39 EU' },
-			],
-		},
-	];
+  const measurementCategories: MeasurementCategory[] = [
+    {
+      title: "Measurements",
+      items: [
+        { label: "Height", value: "170cm" },
+        { label: "Bust", value: "86cm" },
+        { label: "Waist", value: "61cm" },
+        { label: "Hips", value: "92cm" },
+      ],
+    },
+    {
+      title: "Features",
+      items: [
+        { label: "Hair", value: "Brown" },
+        { label: "Eyes", value: "Brown" },
+      ],
+    },
+    {
+      title: "Size",
+      items: [
+        { label: "Clothing", value: "6/8 AU" },
+        { label: "Shoe", value: "39 EU" },
+      ],
+    },
+  ];
 
-	const carouselImages = [1, 2, 3];
+  const carouselImages = [1, 2, 3];
 
-	const nextImage = () => {
-		setCurrentImage((prev) => (prev + 1) % carouselImages.length);
-	};
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % carouselImages.length);
+  };
 
-	const prevImage = () => {
-		setCurrentImage(
-			(prev) => (prev - 1 + carouselImages.length) % carouselImages.length
-		);
-	};
+  const prevImage = () => {
+    setCurrentImage(
+      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length,
+    );
+  };
 
-	const openFullScreenImage = (index: number) => {
-		setFullScreenImage(index);
-	};
+  const openFullScreenImage = (index: number) => {
+    setFullScreenImage(index);
+  };
 
-	const closeFullScreenImage = () => {
-		setFullScreenImage(null);
-	};
+  const closeFullScreenImage = () => {
+    setFullScreenImage(null);
+  };
 
-	return (
-		<section id='digitals' className='min-h-screen'>
-			<h2 className='text-xl font-bold p-4 sticky top-0 bg-white z-10 sm:text-xl'>
-				Digitals
-			</h2>
-			<div className='p-4 grid grid-cols-5 gap-4 xs:grid-cols-3 xs:grid-rows-3'>
-				<div className='col-span-2 row-span-2 xs:col-span-3 xs:row-span-3 relative pl-2'>
-					<img
-						src={`src/assets/images/p0-digitals/p0-${carouselImages[currentImage]}.jpeg`}
-						alt={`Digital ${currentImage + 1}`}
-						className='object-cover w-full h-full'
-					/>
-					<button
-						onClick={prevImage}
-						className='absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full'
-					>
-						<FaChevronLeft />
-					</button>
-					<button
-						onClick={nextImage}
-						className='absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full'
-					>
-						<FaChevronRight />
-					</button>
-				</div>
-				<div className='col-span-3 grid grid-cols-3 gap-4 xs:col-span-3 xs:row-span-3'>
-					{measurementCategories.map((category, categoryIndex) => (
-						<div
-							key={categoryIndex}
-							className='flex flex-col justify-between h-full'
-						>
-							<div>
-								<h3 className='text-lg font-semibold sm:text-xs'>
-									{category.title}
-								</h3>
-								<div className='h-px bg-gray-300 my-1'></div>
-								<ul className='space-y-1 py-2'>
-									{category.items.map((measurement, itemIndex) => (
-										<li key={itemIndex} className='text-sm sm:text-[0.5rem]'>
-											<span className=''>{measurement.label}:</span>
-											<span className='ml-1'>{measurement.value}</span>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
-					))}
-				</div>
-				{[0, 1, 2].map((index) => (
-					<div className='md:col-span-4' key={index}>
-						<img
-							src={`src/assets/images/p0-digitals/p0-${index + 4}.jpeg`}
-							alt={`Digital ${index + 4}`}
-							className='w-full h-full object-cover cursor-pointer'
-							onClick={() => openFullScreenImage(index)}
-						/>
-					</div>
-				))}
-			</div>
-			{fullScreenImage !== null && (
-				<div className='fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50'>
-					<img
-						src={`src/assets/images/p0-digitals/p0-${fullScreenImage + 4}.jpeg`}
-						alt={`Full-screen Digital ${fullScreenImage + 4}`}
-						className='max-w-full max-h-full object-contain'
-					/>
-					<button
-						onClick={closeFullScreenImage}
-						className='absolute top-4 right-4 text-white text-2xl'
-					>
-						<FaTimes />
-					</button>
-				</div>
-			)}
-		</section>
-	);
+  return (
+    <section id="digitals" className="min-h-screen">
+      <h2 className="sticky top-0 z-10 bg-white p-4 text-xl font-bold sm:text-xl">
+        Digitals
+      </h2>
+      <div className="grid grid-cols-5 gap-4 p-4 xs:grid-cols-3 xs:grid-rows-3">
+        <div className="relative col-span-2 row-span-2 pl-2 xs:col-span-3 xs:row-span-3">
+          <img
+            src={`src/assets/images/p0-digitals/p0-${carouselImages[currentImage]}.jpeg`}
+            alt={`Digital ${currentImage + 1}`}
+            className="h-full w-full object-cover"
+          />
+          <button
+            onClick={prevImage}
+            className="absolute left-2 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2"
+          >
+            <FaChevronLeft />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-2 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2"
+          >
+            <FaChevronRight />
+          </button>
+        </div>
+        <div className="col-span-3 grid grid-cols-3 gap-4 xs:col-span-3 xs:row-span-3">
+          {measurementCategories.map((category, categoryIndex) => (
+            <div
+              key={categoryIndex}
+              className="flex h-full flex-col justify-between"
+            >
+              <div>
+                <h3 className="text-lg font-semibold sm:text-xs">
+                  {category.title}
+                </h3>
+                <div className="my-1 h-px bg-gray-300"></div>
+                <ul className="space-y-1 py-2">
+                  {category.items.map((measurement, itemIndex) => (
+                    <li key={itemIndex} className="text-sm sm:text-[0.75rem]">
+                      <span className="font-semibold">
+                        {measurement.label}:
+                      </span>
+                      <span className="ml-1">{measurement.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+        {[0, 1, 2].map((index) => (
+          <div className="md:col-span-4" key={index}>
+            <img
+              src={`src/assets/images/p0-digitals/p0-${index + 4}.jpeg`}
+              alt={`Digital ${index + 4}`}
+              className="h-full w-full cursor-pointer object-cover"
+              onClick={() => openFullScreenImage(index)}
+            />
+          </div>
+        ))}
+      </div>
+      {fullScreenImage !== null && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
+          <img
+            src={`src/assets/images/p0-digitals/p0-${fullScreenImage + 4}.jpeg`}
+            alt={`Full-screen Digital ${fullScreenImage + 4}`}
+            className="max-h-full max-w-full object-contain"
+          />
+          <button
+            onClick={closeFullScreenImage}
+            className="absolute right-4 top-4 text-2xl text-white"
+          >
+            <FaTimes />
+          </button>
+        </div>
+      )}
+    </section>
+  );
 };
 
 export default Digitals;
