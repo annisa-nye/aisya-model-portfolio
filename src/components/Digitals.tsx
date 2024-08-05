@@ -62,8 +62,8 @@ const Digitals: React.FC = () => {
   };
 
   return (
-    <section id="digitals" className="min-h-screen">
-      <h2 className="bg-white py-4 px-6 text-xl font-bold sm:pb-2 sm:pl-2 sm:pt-4 sm:text-xl sm:ml-4">
+    <section id="digitals" className="bg-white">
+      <h2 className="bg-white px-6 py-4 text-xl font-bold sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-xl">
         Digitals
       </h2>
       <div className="grid grid-cols-5 gap-4 p-4 xs:grid-cols-3 xs:grid-rows-3">
@@ -86,7 +86,7 @@ const Digitals: React.FC = () => {
             <FaChevronRight />
           </button>
         </div>
-        <div className="col-span-3 grid grid-cols-3 gap-4 xs:col-span-3 xs:row-span-3">
+        <div className="col-span-3 grid grid-cols-3 gap-4 pt-1 xs:col-span-3 xs:row-span-3">
           {measurementCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
