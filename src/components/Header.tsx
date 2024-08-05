@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         isHeroSection ? "bg-transparent" : "bg-white"
       }`}
     >
-      <div className="flex items-center justify-between px-6 py-6 font-inter">
+      <div className="flex items-center justify-between px-6 py-4 font-inter">
         {!isHeroSection && (
           <h2 className="text-4xl font-bold text-black sm:text-2xl xs:text-xl">
             {sectionTitles[activeSection as keyof typeof sectionTitles]}

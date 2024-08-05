@@ -27,9 +27,10 @@ const FlipLink = ({ children, href }: { children: string; href: string }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-white relative block overflow-hidden whitespace-nowrap text-9xl font-bold uppercase xs:text-2xl sm:text-8xl"
+      className="font-white relative block overflow-hidden whitespace-nowrap text-9xl font-bold uppercase sm:text-7xl"
       style={{
         lineHeight: 0.95,
+        fontSize: "clamp(3rem, 8vw, 9rem)",
       }}
     >
       <div>
@@ -77,10 +78,10 @@ const FlipLink = ({ children, href }: { children: string; href: string }) => {
 export const SocialsLinks: React.FC = () => {
   return (
     <section id="socials">
-      <h2 className="bg-white px-6 py-6 text-4xl font-bold text-black xs:text-xl sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl">
+      <h2 className="bg-white px-6 py-6 text-4xl font-bold text-black xs:text-xl sm:ml-4 sm:pb-6 sm:pl-2 sm:pt-4 sm:text-2xl">
         Socials
       </h2>
-      <div className="grid h-screen place-content-center gap-2 bg-red-600 px-8 font-inter text-white">
+      <div className="grid h-auto py-32 place-content-center gap-2 bg-red-600 px-8 font-inter text-white sm:py-20">
         {socialLinks.map((social) => (
           <FlipLink key={social.platform} href={social.url}>
             {social.platform}

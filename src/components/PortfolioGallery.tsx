@@ -20,19 +20,14 @@ const portfolioItems: PortfolioItem[] = [
     title: "Pink and Blue",
     folderName: "p2-pink-blue",
     description: "Soft pastels meet in this dreamy pink and blue themed shoot.",
-    coverImage: "/src/assets/images/p2-pink-blue/p2-1.jpeg",
+    coverImage: "/src/assets/images/p2-pink-blue/p2-3.jpeg",
   },
-  {
-    title: "Black and White",
-    folderName: "p3-black-white",
-    description: "Classic monochrome photography with striking contrasts.",
-    coverImage: "/src/assets/images/p3-black-white/p3-7.jpeg",
-  },
+
   {
     title: "Pink and Cream",
     folderName: "p4-pink-cream",
     description: "Delicate and feminine shoot with pink and cream hues.",
-    coverImage: "/src/assets/images/p4-pink-cream/p4-5.jpeg",
+    coverImage: "/src/assets/images/p4-pink-cream/p4-1.jpeg",
   },
   {
     title: "Multicolour",
@@ -58,6 +53,12 @@ const portfolioItems: PortfolioItem[] = [
     folderName: "p8-indonesian",
     description: "Celebrating Indonesian culture and traditional fashion.",
     coverImage: "/src/assets/images/p8-indonesian/p8-4.jpeg",
+  },
+  {
+    title: "Black and White",
+    folderName: "p3-black-white",
+    description: "Classic monochrome photography with striking contrasts.",
+    coverImage: "/src/assets/images/p3-black-white/p3-5.jpeg",
   },
 ];
 
