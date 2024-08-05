@@ -1,158 +1,201 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Masonry from "react-masonry-css";
-import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface PortfolioItem {
   title: string;
   folderName: string;
+  description: string;
+  coverImage: string;
 }
 
 const portfolioItems: PortfolioItem[] = [
-  { title: "Red and Yellow", folderName: "p1-red-yellow" },
-  { title: "Pink and Blue", folderName: "p2-pink-blue" },
-  { title: "Black and White", folderName: "p3-black-white" },
-  { title: "Pink and Cream", folderName: "p4-pink-cream" },
-  { title: "Multicolour", folderName: "p5-multicolour" },
-  { title: "Magazine", folderName: "p6-magazine" },
-  { title: "Runway", folderName: "p7-runway" },
-  { title: "Indonesian", folderName: "p8-indonesian" },
+  {
+    title: "Red and Yellow",
+    folderName: "p1-red-yellow",
+    description: "A vibrant shoot featuring bold red and yellow tones.",
+    coverImage: "/src/assets/images/p1-red-yellow/p1-2.jpeg",
+  },
+  {
+    title: "Pink and Blue",
+    folderName: "p2-pink-blue",
+    description: "Soft pastels meet in this dreamy pink and blue themed shoot.",
+    coverImage: "/src/assets/images/p2-pink-blue/p2-1.jpeg",
+  },
+  {
+    title: "Black and White",
+    folderName: "p3-black-white",
+    description: "Classic monochrome photography with striking contrasts.",
+    coverImage: "/src/assets/images/p3-black-white/p3-7.jpeg",
+  },
+  {
+    title: "Pink and Cream",
+    folderName: "p4-pink-cream",
+    description: "Delicate and feminine shoot with pink and cream hues.",
+    coverImage: "/src/assets/images/p4-pink-cream/p4-5.jpeg",
+  },
+  {
+    title: "Multicolour",
+    folderName: "p5-multicolour",
+    description: "Explosion of colors in this diverse and dynamic shoot.",
+    coverImage: "/src/assets/images/p5-multicolour/p5-5.jpeg",
+  },
+  {
+    title: "Magazine",
+    folderName: "p6-magazine",
+    description: "Editorial-style shoot ready for the glossy pages.",
+    coverImage: "/src/assets/images/p6-magazine/p6-2.jpeg",
+  },
+  {
+    title: "Runway",
+    folderName: "p7-runway",
+    description:
+      "High fashion meets the catwalk in this runway-inspired shoot.",
+    coverImage: "/src/assets/images/p7-runway/p7-1.jpeg",
+  },
+  {
+    title: "Indonesian",
+    folderName: "p8-indonesian",
+    description: "Celebrating Indonesian culture and traditional fashion.",
+    coverImage: "/src/assets/images/p8-indonesian/p8-4.jpeg",
+  },
 ];
 
 const PortfolioGallery: React.FC = () => {
-  const [images, setImages] = useState<{ [key: string]: string[] }>({});
-  const [fullscreenImage, setFullscreenImage] = useState<{
-    folder: string;
-    index: number;
-  } | null>(null);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
-    const loadImages = async () => {
-      const imageModules = import.meta.glob("/src/assets/images/**/*.jpeg");
-      const loadedImages: { [key: string]: string[] } = {};
-
-      for (const path in imageModules) {
-        const folderName = path.split("/")[4];
-        if (!loadedImages[folderName]) {
-          loadedImages[folderName] = [];
-        }
-        const module = await imageModules[path]();
-        loadedImages[folderName].push(module.default);
-      }
-
-      setImages(loadedImages);
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+      setViewportHeight(window.innerHeight);
     };
-
-    loadImages();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const openFullscreen = (folder: string, index: number) => {
-    setFullscreenImage({ folder, index });
+  const isMobile = viewportWidth <= 640;
+  const gridColumns = isMobile ? 2 : 4;
+  const gridRows = Math.ceil(portfolioItems.length / gridColumns);
+  const cardHeight = (viewportHeight - 100) / gridRows;
+
+  const openModal = async (item: PortfolioItem) => {
+    setSelectedItem(item);
+    setCurrentImageIndex(0);
+
+    const imageModules = import.meta.glob("/src/assets/images/**/*.jpeg", {
+      eager: true,
+    });
+    const folderImages = Object.entries(imageModules)
+      .filter(([path]) => path.includes(item.folderName))
+      .map(([_, module]: [string, any]) => module.default);
+
+    setImages(folderImages);
   };
 
-  const closeFullscreen = () => {
-    setFullscreenImage(null);
+  const closeModal = () => {
+    setSelectedItem(null);
+    setImages([]);
   };
 
   const nextImage = () => {
-    if (fullscreenImage) {
-      const folderImages = images[fullscreenImage.folder];
-      setFullscreenImage((prev) => ({
-        ...prev!,
-        index: (prev!.index + 1) % folderImages.length,
-      }));
-    }
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const prevImage = () => {
-    if (fullscreenImage) {
-      const folderImages = images[fullscreenImage.folder];
-      setFullscreenImage((prev) => ({
-        ...prev!,
-        index: (prev!.index - 1 + folderImages.length) % folderImages.length,
-      }));
-    }
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length,
+    );
   };
 
   return (
-    <section id="portfolio" className="min-h-screen w-full font-inter section-padding">
-      <h2 className="sticky top-0 z-10 bg-white p-6 text-xl font-bold sm:text-xl sm:pt-4 sm:pb-2 sm:pl-2">
-        
+    <section
+      id="portfolio"
+      className="section-padding flex min-h-screen w-full flex-col font-inter"
+    >
+      <h2 className="bg-white px-6 py-4 text-xl font-bold sm:pb-2 sm:pl-2 sm:pt-4 sm:text-xl">
+        Portfolio
       </h2>
-      <Masonry
-        breakpointCols={{
-          default: 4,
-          1100: 3,
-          700: 2,
-          500: 1,
+      <div
+        className={`grid flex-grow gap-4 p-4 ${
+          isMobile ? "grid-cols-2" : "grid-cols-4"
+        }`}
+        style={{
+          gridTemplateRows: `repeat(${gridRows}, minmax(0, 1fr))`,
         }}
-        className="flex w-auto"
-        columnClassName="bg-clip-padding"
       >
-        {portfolioItems.flatMap((item) =>
-          (images[item.folderName] || []).map((imageSrc, imgIndex) => (
-            <motion.div
-              key={`${item.folderName}-${imgIndex}`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative m-2 overflow-hidden"
-              onClick={() => openFullscreen(item.folderName, imgIndex)}
-            >
-              <img
-                src={imageSrc}
-                alt={`${item.title} ${imgIndex + 1}`}
-                className="w-full cursor-pointer object-cover"
-              />
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white"
-              >
-                <p className="text-center font-semibold">{item.title}</p>
-              </motion.div>
-            </motion.div>
-          )),
-        )}
-      </Masonry>
+        {portfolioItems.map((item) => (
+          <motion.div
+            key={item.folderName}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative cursor-pointer overflow-hidden rounded-lg shadow-md"
+            style={{ height: `${cardHeight}px` }}
+            onClick={() => openModal(item)}
+          >
+            <img
+              src={item.coverImage}
+              alt={item.title}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 flex flex-col justify-end bg-black bg-opacity-50 p-4 opacity-0 transition-opacity duration-300 hover:opacity-100">
+              <h3 className="mb-2 text-xl font-semibold text-white">
+                {item.title}
+              </h3>
+              <p className="text-sm text-gray-200">{item.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
 
-      {fullscreenImage && images[fullscreenImage.folder] && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
-        >
-          <img
-            src={images[fullscreenImage.folder][fullscreenImage.index]}
-            alt={`Fullscreen ${fullscreenImage.folder} ${fullscreenImage.index + 1}`}
-            className="max-h-full max-w-full object-contain"
-          />
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={closeFullscreen}
-            className="absolute right-4 top-4 text-2xl text-white"
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+            onClick={closeModal}
           >
-            <FaTimes />
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={prevImage}
-            className="absolute left-4 top-1/2 -translate-y-1/2 transform text-2xl text-white"
-          >
-            <FaChevronLeft />
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 transform text-2xl text-white"
-          >
-            <FaChevronRight />
-          </motion.button>
-        </motion.div>
-      )}
+            <div
+              className="relative max-h-full max-w-4xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {images.length > 0 && (
+                <img
+                  src={images[currentImageIndex]}
+                  alt={`${selectedItem.title} ${currentImageIndex + 1}`}
+                  className="max-h-[80vh] max-w-full object-contain"
+                />
+              )}
+              <button
+                className="absolute right-4 top-4 text-2xl text-white"
+                onClick={closeModal}
+              >
+                <FaTimes />
+              </button>
+              <button
+                className="absolute left-4 top-1/2 -translate-y-1/2 transform text-2xl text-white"
+                onClick={prevImage}
+              >
+                <FaChevronLeft />
+              </button>
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2 transform text-2xl text-white"
+                onClick={nextImage}
+              >
+                <FaChevronRight />
+              </button>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform text-white">
+                {currentImageIndex + 1} / {images.length}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

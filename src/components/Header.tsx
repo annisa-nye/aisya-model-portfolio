@@ -56,15 +56,15 @@ const Header: React.FC = () => {
         isHeroSection ? "bg-transparent" : "bg-white"
       }`}
     >
-      <div className="flex items-center justify-between px-6 py-4 font-inter">
+      <div className="flex items-center justify-between px-6 py-6 font-inter">
         {!isHeroSection && (
-          <h2 className="text-xl font-bold text-red-500">
+          <h2 className="text-xl font-bold text-black">
             {sectionTitles[activeSection as keyof typeof sectionTitles]}
           </h2>
         )}
         <nav className={isHeroSection ? "w-full" : ""}>
           <ul
-            className={`flex text-lg xs:text-sm ${isHeroSection ? "justify-end" : ""}`}
+            className={`flex text-lg xs:text-[0.75rem] ${isHeroSection ? "justify-end" : ""}`}
           >
             {Object.entries(sectionTitles).map(([key, value]) => (
               <li

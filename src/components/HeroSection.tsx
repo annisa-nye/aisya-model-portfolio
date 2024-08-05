@@ -78,7 +78,7 @@ const HeroSection: React.FC = () => {
         </h1>
         <div
           id="landing-subheader"
-          className={`mt-2 p-2 text-4xl font-bold ${isDesktop ? "text-red-500" : "text-red-500 bg-white text-center rounded-lg"}`}
+          className={`mt-2 p-2 text-4xl font-bold ${isDesktop ? "rounded-lg bg-white text-left text-red-500" : "rounded-lg bg-white text-center text-red-500"}`}
         >
           {subheaderRole}
         </div>
