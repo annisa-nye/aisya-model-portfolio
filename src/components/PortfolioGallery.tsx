@@ -116,7 +116,7 @@ const PortfolioGallery: React.FC = () => {
       id="portfolio"
       className="section-padding flex min-h-screen w-full flex-col font-inter"
     >
-      <h2 className="bg-white px-6 py-4 text-xl font-bold sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-xl">
+      <h2 className="bg-white px-6 py-4 text-4xl font-bold text-black sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl xs:text-xl">
         Portfolio
       </h2>
       <div

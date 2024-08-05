@@ -63,11 +63,11 @@ const Digitals: React.FC = () => {
 
   return (
     <section id="digitals" className="bg-white">
-      <h2 className="bg-white px-6 py-4 text-xl font-bold sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-xl">
+      <h2 className="bg-white px-6 py-4 text-4xl font-bold text-black sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl xs:text-xl">
         Digitals
       </h2>
       <div className="grid grid-cols-5 gap-4 p-4 xs:grid-cols-3 xs:grid-rows-3">
-        <div className="relative col-span-2 row-span-2 pl-2 xs:col-span-3 xs:row-span-3">
+        <div className="relative col-span-2 row-span-2 pl-2 pt-1 xs:col-span-3 xs:row-span-3">
           <img
             src={`src/assets/images/p0-digitals/p0-${carouselImages[currentImage]}.jpeg`}
             alt={`Digital ${currentImage + 1}`}
