@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Send } from "lucide-react";
 
 const Contact: React.FC = () => {
   return (
-    <section id="contact" className="min-h-screen w-full font-inter">
+    <section id="contact" className="w-full pb-20 font-inter">
       <h2 className="bg-white px-6 py-6 text-4xl font-bold text-black xs:text-xl sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl">
         Contact
       </h2>
@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
                     name="fullName"
                     id="fullName"
                     placeholder="Enter full name"
-                    className="w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 sm:text-md"
+                    className="sm:text-md w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
                     required
                   />
                 </div>
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
                     name="email"
                     id="email"
                     placeholder="Enter email"
-                    className="w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 sm:text-md"
+                    className="sm:text-md w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
                     required
                   />
                 </div>
@@ -98,7 +98,7 @@ const Contact: React.FC = () => {
                   name="subject"
                   id="subject"
                   placeholder="Enter a subject line"
-                  className="w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 sm:text-md"
+                  className="sm:text-md w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
                   required
                 />
               </div>
@@ -114,7 +114,7 @@ const Contact: React.FC = () => {
                   id="message"
                   rows={6}
                   placeholder="Enter your message"
-                  className="w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 sm:text-md"
+                  className="sm:text-md w-full rounded-md border border-gray-300 bg-red-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
                   required
                 ></textarea>
               </div>
