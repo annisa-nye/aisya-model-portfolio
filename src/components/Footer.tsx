@@ -26,11 +26,11 @@ const socialLinks: SocialLinkProps[] = [
 ];
 
 const Footer: React.FC = () => (
-  <footer className="bg-red-600 pt-8 text-white">
+  <footer className="bg-red-600 pt-8 font-inter text-white">
     <div className="container mx-auto px-4">
-      <div className="md:grid-cols-2 grid grid-cols-1 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         <div>
-          <a href="#" className="text-2xl font-bold">
+          <a href="#" className="text-4xl font-bold xs:text-xl sm:text-2xl">
             Aisya Wiley
           </a>
           <br />
