@@ -1,4 +1,6 @@
 import React from "react";
+import { Helmet } from "react-helmet";
+import Favicon from "./components/Favicon";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -11,6 +13,9 @@ import Socials from "./components/Socials";
 function App() {
   return (
     <div className="App">
+      <Helmet>
+        <Favicon />
+      </Helmet>
       <Header />
       <main>
         <HeroSection />
