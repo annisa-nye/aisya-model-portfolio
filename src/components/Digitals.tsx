@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 interface Measurement {
@@ -10,6 +10,12 @@ interface MeasurementCategory {
   title: string;
   items: Measurement[];
 }
+
+// Import all digital images
+const digitalImages = import.meta.glob(
+  "/src/assets/images/p0-digitals/*.jpeg",
+  { eager: true },
+);
 
 const Digitals: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -41,7 +47,21 @@ const Digitals: React.FC = () => {
     },
   ];
 
-  const carouselImages = [1, 2, 3];
+  const carouselImages = useMemo(() => {
+    return Object.entries(digitalImages)
+      .filter(([path]) => path.includes("p0-"))
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([_, module]) => (module as { default: string }).default)
+      .slice(0, 3);
+  }, []);
+
+  const additionalImages = useMemo(() => {
+    return Object.entries(digitalImages)
+      .filter(([path]) => path.includes("p0-"))
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([_, module]) => (module as { default: string }).default)
+      .slice(3);
+  }, []);
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % carouselImages.length);
@@ -63,13 +83,13 @@ const Digitals: React.FC = () => {
 
   return (
     <section id="digitals" className="bg-white">
-      <h2 className="bg-white px-6 py-4 text-4xl font-bold text-black sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl xs:text-xl">
+      <h2 className="bg-white px-6 py-4 text-4xl font-bold text-black xs:text-xl sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl">
         Digitals
       </h2>
       <div className="grid grid-cols-5 gap-4 p-4 xs:grid-cols-3 xs:grid-rows-3">
         <div className="relative col-span-2 row-span-2 pl-2 pt-1 xs:col-span-3 xs:row-span-3">
           <img
-            src={`src/assets/images/p0-digitals/p0-${carouselImages[currentImage]}.jpeg`}
+            src={carouselImages[currentImage]}
             alt={`Digital ${currentImage + 1}`}
             className="h-full w-full object-cover"
           />
@@ -111,10 +131,10 @@ const Digitals: React.FC = () => {
             </div>
           ))}
         </div>
-        {[0, 1, 2].map((index) => (
+        {additionalImages.map((imageSrc, index) => (
           <div className="md:col-span-4" key={index}>
             <img
-              src={`src/assets/images/p0-digitals/p0-${index + 4}.jpeg`}
+              src={imageSrc}
               alt={`Digital ${index + 4}`}
               className="h-full w-full cursor-pointer object-cover"
               onClick={() => openFullScreenImage(index)}
@@ -125,7 +145,7 @@ const Digitals: React.FC = () => {
       {fullScreenImage !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
           <img
-            src={`src/assets/images/p0-digitals/p0-${fullScreenImage + 4}.jpeg`}
+            src={additionalImages[fullScreenImage]}
             alt={`Full-screen Digital ${fullScreenImage + 4}`}
             className="max-h-full max-w-full object-contain"
           />
