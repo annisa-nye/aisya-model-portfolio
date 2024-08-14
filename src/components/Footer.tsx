@@ -1,9 +1,10 @@
 import React from "react";
 import { FaYoutube, FaTiktok, FaInstagram } from "react-icons/fa";
+import { IconType } from "react-icons";
 
 interface SocialLinkProps {
   platform: string;
-  icon: React.ElementType;
+  icon: IconType;
   url: string;
 }
 
@@ -38,18 +39,21 @@ const Footer: React.FC = () => (
         </div>
 
         <div className="flex flex-col space-y-4">
-          {socialLinks.map((social) => (
-            <a
-              key={social.platform}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center transition-colors hover:text-red-200"
-            >
-              <social.icon className="mr-2 text-2xl" />
-              <span>{social.platform}</span>
-            </a>
-          ))}
+          {socialLinks.map((social) => {
+            const Icon = social.icon;
+            return (
+              <a
+                key={social.platform}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center transition-colors hover:text-red-200"
+              >
+                <Icon className="mr-2 text-2xl" />
+                <span>{social.platform}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
 

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const HeroSection: React.FC = () => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [subheaderRole, setSubheaderRole] = useState("model");
+  const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => setViewportWidth(window.innerWidth);
@@ -11,24 +12,27 @@ const HeroSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const roles = ["model", "artist", "cantik girl", "god", "client advisor"];
+    const roles = ["model", "content creator", "client advisor"];
 
     const changeRole = () => {
       const randomRole = roles[Math.floor(Math.random() * roles.length)];
       setSubheaderRole(randomRole);
-      const newTimeout = Math.floor(Math.random() * 500 + 1000);
-      setTimeout(changeRole, newTimeout);
+      const newTimeout = Math.floor(Math.random() * 2000 + 3000); // 3-5 seconds
+      timeoutRef.current = window.setTimeout(changeRole, newTimeout);
     };
 
     changeRole();
 
     // Cleanup function to clear any remaining timeouts
-    return () => clearTimeout(changeRole);
+    return () => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   const isDesktop = viewportWidth > 830;
   const isWideDesktop = viewportWidth > 1700;
-  
 
   return (
     <section

@@ -1,14 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaYoutube, FaTiktok, FaInstagram } from "react-icons/fa";
+import { IconType } from "react-icons";
 
 interface SocialLinkProps {
   platform: string;
-  icon: React.ElementType;
+  icon: IconType;
   url: string;
 }
 
-const socialLinks = [
+const socialLinks: SocialLinkProps[] = [
   {
     icon: FaInstagram,
     platform: "Instagram",
@@ -87,7 +88,7 @@ const FlipLink: React.FC<SocialLinkProps> = ({ platform, icon: Icon, url }) => {
   );
 };
 
-export const SocialsLinks: React.FC = () => {
+const Socials: React.FC = () => {
   return (
     <section id="socials">
       <h2 className="bg-white px-6 py-6 text-4xl font-bold text-black xs:text-xl sm:ml-4 sm:pb-6 sm:pl-2 sm:pt-4 sm:text-2xl">
@@ -102,4 +103,4 @@ export const SocialsLinks: React.FC = () => {
   );
 };
 
-export default SocialsLinks;
+export default Socials;
