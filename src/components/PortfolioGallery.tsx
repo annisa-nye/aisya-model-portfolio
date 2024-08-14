@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+// Import all images
+const imageModules = import.meta.glob("/src/assets/images/**/*.jpeg", {
+  eager: true,
+});
+
 interface PortfolioItem {
   title: string;
   folderName: string;
@@ -22,7 +27,6 @@ const portfolioItems: PortfolioItem[] = [
     description: "Soft pastels meet in this dreamy pink and blue themed shoot.",
     coverImage: "/src/assets/images/p2-pink-blue/p2-3.jpeg",
   },
-
   {
     title: "Pink and Cream",
     folderName: "p4-pink-cream",
@@ -60,7 +64,10 @@ const portfolioItems: PortfolioItem[] = [
     description: "Classic monochrome photography with striking contrasts.",
     coverImage: "/src/assets/images/p3-black-white/p3-5.jpeg",
   },
-];
+].map((item) => ({
+  ...item,
+  coverImage: (imageModules[item.coverImage] as { default: string }).default,
+}));
 
 const PortfolioGallery: React.FC = () => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
@@ -87,9 +94,6 @@ const PortfolioGallery: React.FC = () => {
     setSelectedItem(item);
     setCurrentImageIndex(0);
 
-    const imageModules = import.meta.glob("/src/assets/images/**/*.jpeg", {
-      eager: true,
-    });
     const folderImages = Object.entries(imageModules)
       .filter(([path]) => path.includes(item.folderName))
       .map(([_, module]: [string, any]) => module.default);
@@ -117,7 +121,7 @@ const PortfolioGallery: React.FC = () => {
       id="portfolio"
       className="section-padding flex min-h-screen w-full flex-col font-inter"
     >
-      <h2 className="bg-white px-6 py-4 text-4xl font-bold text-black sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl xs:text-xl">
+      <h2 className="bg-white px-6 py-4 text-4xl font-bold text-black xs:text-xl sm:ml-4 sm:pb-2 sm:pl-2 sm:pt-4 sm:text-2xl">
         Portfolio
       </h2>
       <div
