@@ -77,7 +77,7 @@ const Header: React.FC = () => {
                   to={key}
                   smooth={true}
                   duration={500}
-                  className="cursor-pointer text-red-500 hover:text-red-800"
+                  className="cursor-pointer text-red-500"
                 >
                   {value}
                 </Link>

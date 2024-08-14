@@ -11,7 +11,7 @@ import Socials from "./components/Socials";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App overflow-x-hidden">
       <Helmet>
         <Favicon />
       </Helmet>
