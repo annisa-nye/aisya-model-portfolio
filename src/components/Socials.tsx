@@ -48,7 +48,7 @@ const FlipLink: React.FC<SocialLinkProps> = ({ platform, icon: Icon, url }) => {
         });
       }
     },
-    [url, isAnimating, controls],
+    [url, isAnimating, controls]
   );
 
   return (
@@ -66,7 +66,7 @@ const FlipLink: React.FC<SocialLinkProps> = ({ platform, icon: Icon, url }) => {
       }}
     >
       <div className="flex items-center">
-        <Icon className="mr-2 text-4xl sm:text-5xl" />
+        <Icon className="mr-5 text-7xl sm:text-5xl" />
         {platform.split("").map((l, i) => (
           <motion.span
             variants={{
