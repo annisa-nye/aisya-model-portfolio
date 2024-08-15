@@ -86,7 +86,7 @@ const FlipLink: React.FC<SocialLinkProps> = ({ platform, icon: Icon, url }) => {
         ))}
       </div>
       <div className="absolute inset-0 flex items-center">
-        <Icon className="invisible mr-2 text-4xl sm:text-5xl" />
+        <Icon className="invisible mr-5 text-7xl sm:text-5xl" />
         {platform.split("").map((l, i) => (
           <motion.span
             variants={{
