@@ -21,15 +21,10 @@ const WorkExpTiles: React.FC<WorkExpTilesProps> = ({ expIds }) => {
           <motion.div
             key={expId}
             id={expId}
-            className={`work-exp-tile relative mx-2 inline-block bg-[url('./assets/images/p2-pink-blue/p2-2.jpeg')] bg-cover bg-fixed bg-top bg-no-repeat ${index === 0 ? "mt-[-5vh]" : ""} ${index === 1 ? "mt-0" : ""} ${index === 2 ? "mb-[-5vh]" : ""}`}
+            className={`work-exp-tile relative mx-2 inline-block h-[25em] w-[20em] bg-[url('./assets/images/p2-pink-blue/p2-2.jpeg')] bg-cover bg-top bg-no-repeat xs:w-[14em] sm:w-[16em] ${index === 0 ? "mt-[-5em]" : ""} ${index === 1 ? "mt-0" : ""} ${index === 2 ? "mb-[-5em]" : ""}`}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            style={{
-              width: "100%",
-              height: "100vh",
-              maxWidth: "20em",
-            }}
           >
             <motion.div
               className="landing-overlay absolute inset-0 bg-black bg-opacity-30"
